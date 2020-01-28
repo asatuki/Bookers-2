@@ -1,0 +1,71 @@
+    <div class="container">
+    <div class="row">
+    <div class="col-xs-3">
+
+    <h1>User info</h1>
+	<div class="example">
+        <%= attachment_image_tag @user, :profile_image, :fill, 80, 80, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg", size:'80x80' %></div></br></br></br>
+    <hr></hr>
+	<h4>name   <%= @user.name %></h4>
+    <hr></hr>
+	<h4>Introduction</h4>
+        <p><%= @user.introduction %></p><br>
+    <hr></hr>
+    <%= link_to edit_user_path(@user), class: "center-block" do %>
+            <button type="button" class="btn btn-default btn-block">
+                <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+            </button>
+    <% end %>
+
+
+
+    </br>
+    <h3>New book</h3>
+    <%= form_for(@newbook) do |f| %>
+
+    <div class="tk">
+    <p class="tk-title">Title</p>
+    <div class="tk-waku"><%= f.text_field :title %></div>
+    <p class="tk-title">Opinion</p>
+    <div class="tk-waku"><%= f.text_area :body %></div>
+    </br>
+
+    <%= f.submit 'Create Book' %>
+    </div>
+    <% end %>
+</div>
+
+<div class="col-xs-9">
+
+<h2>Users</h2>
+
+<table class="table">
+
+    <thead>
+        <tr>
+            <td><h4>Image</h4></td>
+            <td><h4>name</h4></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </thead>
+
+
+
+    <% @users.each do |user| %>
+    <tr>
+        <td class="table-show"><%= attachment_image_tag user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg", size:'60x60' %></td>
+        <td class="table-title"><%= user.name %></td>
+        <td></td>
+        <td><%= link_to "Show", user_path(user.id) %></td>
+    </tr>
+    <% end %>
+</table>
+
+    </div>
+
+
+
+
+</div>
+</div>
